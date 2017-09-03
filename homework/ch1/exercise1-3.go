@@ -4,10 +4,10 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
-	for index, value := range os.Args[1:] {
-		fmt.Printf("%[1]s %[2]d \n", value, index)
-	}
+	fmt.Println(strings.Join(os.Args[1:], " "))
+	fmt.Println(os.Args[1:])
 }
