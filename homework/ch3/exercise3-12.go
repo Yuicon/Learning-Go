@@ -25,7 +25,8 @@ func makeSortRuneArray(s string) []rune {
 	for i, t := range s {
 		runeArray[i] = t
 	}
-	return quickSort(runeArray, 0, len(s) - 1)
+	quickSort(runeArray, 0, len(s) - 1)
+	return runeArray
 }
 
 func equal(x, y []rune) bool {
@@ -46,7 +47,7 @@ func swap(a, b *rune) {
 	*b = tmp;
 }
 
-func partition(runeArray []rune, low, high int) (int, []rune) {
+func partition(runeArray []rune, low, high int) int {
 	privotKey := runeArray[low]
 	for low < high {
 		for low < high  && runeArray[high] >= privotKey {
@@ -58,14 +59,13 @@ func partition(runeArray []rune, low, high int) (int, []rune) {
 		}
 		swap(&runeArray[low], &runeArray[high])
 	}
-	return low, runeArray
+	return low
 }
 
-func quickSort(runeArray []rune, low, high int) []rune {
+func quickSort(runeArray []rune, low, high int) {
 	if(low < high){
-		privotLoc, runeArray := partition(runeArray,  low,  high);  //将表一分为二
-		runeArray = quickSort(runeArray,  low,  privotLoc -1);          //递归对低子表递归排序
-		runeArray = quickSort(runeArray,   privotLoc + 1, high);        //递归对高子表递归排序
+		privotLoc := partition(runeArray,  low,  high);  //将表一分为二
+		quickSort(runeArray,  low,  privotLoc -1);          //递归对低子表递归排序
+		quickSort(runeArray,   privotLoc + 1, high);        //递归对高子表递归排序
 	}
-	return runeArray
 }
