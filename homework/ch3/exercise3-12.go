@@ -21,10 +21,7 @@ func isReorder(l string, r string) bool {
 }
 
 func makeSortRuneArray(s string) []rune {
-	runeArray := make([]rune, len(s))
-	for i, t := range s {
-		runeArray[i] = t
-	}
+	runeArray := []rune(s)
 	quickSort(runeArray, 0, len(s) - 1)
 	return runeArray
 }
