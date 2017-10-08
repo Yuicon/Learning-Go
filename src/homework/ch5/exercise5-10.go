@@ -34,27 +34,26 @@ func topoSort(m map[string][]string) []string {
 	var visitAll func(items []string)
 	visitAll = func(items []string) {
 		for _, item := range items {
+			// 如果没有被查看过
 			if !seen[item] {
+				//设置为已查看
 				seen[item] = true
+				//如果有前置课程就继续
 				visitAll(m[item])
+				//没有前置课程就加入学习列表
 				order = append(order, item)
 			}
 		}
 	}
 	for key := range m {
+		//随机从一门课的前置课程数组开始
 		visitAll(m[key])
 	}
+	//将不是任何课程前置的课程加入课程
 	for key := range m {
 		if !seen[key] {
 			order = append(order, key)
 		}
 	}
-
-	//var keys []string
-	//for key := range m {
-	//	keys = append(keys, key)
-	//}
-	//sort.Strings(keys)
-	//visitAll(m)
 	return order
 }
