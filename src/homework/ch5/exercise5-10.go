@@ -48,10 +48,9 @@ func topoSort(m map[string][]string) []string {
 	for key := range m {
 		//随机从一门课的前置课程数组开始
 		visitAll(m[key])
-	}
-	//将不是任何课程前置的课程加入学习列表
-	for key := range m {
+		//将不是任何课程前置的课程加入学习列表
 		if !seen[key] {
+			seen[key] = true
 			order = append(order, key)
 		}
 	}
