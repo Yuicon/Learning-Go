@@ -37,6 +37,7 @@ func (s *IntSet) UnionWith(t *IntSet) {
 	}
 }
 
+
 // String returns the set as a string of the form "{1 2 3}".
 func (s IntSet) String() string {
 	var buf bytes.Buffer
@@ -83,7 +84,7 @@ func (s *IntSet) Copy() *IntSet  {
 
 func main() {
 	var x, y IntSet
-	x.Add(2)
+	x.Add(1)
 	x.Add(144)
 	x.Add(16)
 	x.Add(9)
@@ -101,7 +102,13 @@ func main() {
 	y.Add(42)
 	fmt.Println(y.String()) // "{9 42}"
 
-	x.UnionWith(&y)
+	//x.UnionWith(&y)
+	t := x.IntersectWith(&y)
+	fmt.Println(t.String())
+	d := x.DifferenceWith(&y)
+	fmt.Println(d.String())
+	s := x.SymmetricDifference(&y)
+	fmt.Println(s.String())
 	fmt.Println(x.String()) // "{1 9 42 144}"
 	fmt.Println(x.Has(9), x.Has(123)) // "true false"
 }
