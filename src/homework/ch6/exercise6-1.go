@@ -101,14 +101,7 @@ func main() {
 	y.Add(9)
 	y.Add(42)
 	fmt.Println(y.String()) // "{9 42}"
-
-	//x.UnionWith(&y)
-	t := x.IntersectWith(&y)
-	fmt.Println(t.String())
-	d := x.DifferenceWith(&y)
-	fmt.Println(d.String())
-	s := x.SymmetricDifference(&y)
-	fmt.Println(s.String())
+	x.UnionWith(&y)
 	fmt.Println(x.String()) // "{1 9 42 144}"
 	fmt.Println(x.Has(9), x.Has(123)) // "true false"
 }
